@@ -48,7 +48,7 @@ public class IntListTest {
         assertEquals(IntList.of(1, 4, 9), res);
     }
 
-    @Test
+    @Test (timeout = 100000)
     public void testDcatenate() {
         IntList A = IntList.of(1, 2, 3);
         IntList B = IntList.of(4, 5, 6);
@@ -64,6 +64,24 @@ public class IntListTest {
         IntList exp = IntList.of(1, 2, 3, 4, 5, 6);
         assertEquals(exp, IntList.catenate(A, B));
         assertEquals(IntList.of(1, 2, 3), A);
+    }
+
+    @Test
+    public void testReverse() {
+        /** when input IntList is empty / null */
+        IntList A = new IntList();
+        IntList exp2 = new IntList();
+        assertEquals(exp2, IntList.reverse(A));
+
+        /** test if reverse() function is destructive */
+        IntList B = IntList.of(1, 2, 3);
+        IntList former = B;
+        assertNotEquals(former, IntList.reverse(B));
+
+        /** test reverse function */
+        IntList C = IntList.of(5, 55, 555, 100);
+        IntList exp1 = IntList.of(100, 555, 55, 5);
+        assertEquals(exp1, IntList.reverse(C));
     }
 
     /** If you're running this from the command line, you'll need

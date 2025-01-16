@@ -120,7 +120,22 @@ public class IntList {
         return returnL;
     }
 
+    public static IntList reverse(IntList L) {
+        /** if L is empty */
+        if (L == null) {
+            return L;
+        }
 
+        IntList pre = null;
+        IntList cur = L;
+        while (cur != null) {
+            IntList remain = cur.rest;
+            cur.rest = pre;
+            pre = cur;
+            cur = remain;
+        }
+        return pre;
+    }
 
 
 
